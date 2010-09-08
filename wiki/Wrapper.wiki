@@ -14,4 +14,4 @@ A simple implementation is provided. `Spring BeanWrapper` and `Commons BeanUtils
 
 = Ideas =
   * Provide a more sophisticated implementation with chained property access (using dot in property name).
-  * Provide CommonsBeantils and Spring implementatios
+  * Provide `CommonsBeantils` and `Spring` implementatios
