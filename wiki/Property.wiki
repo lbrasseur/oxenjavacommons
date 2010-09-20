@@ -6,9 +6,9 @@ This API provides a way for accessing and binding properties.
 
 = Details =
 It extends the idea found on this blogs:
- * [http://www.matthicks.com/2009/07/death-of-beans.html http://www.matthicks.com/2009/07/death-of-beans.html]
- * [http//www.sgine.org/2010/08/properties-discussion.html http//www.sgine.org/2010/08/properties-discussion.html]
- * [http//www.sgine.org/2010/09/beans-should-be-deprecated-future-of.html http//www.sgine.org/2010/09/beans-should-be-deprecated-future-of.html]
+ * [http://www.matthicks.com/2009/07/death-of-beans.html]
+ * [http://www.sgine.org/2010/08/properties-discussion.html]
+ * [http://www.sgine.org/2010/09/beans-should-be-deprecated-future-of.html]
 
 but adds observables and the ability and binding properties and/or events.
 
