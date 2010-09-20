@@ -20,7 +20,7 @@ public class NotificationProperty implements Property<String> {
 	@Override
 	public void set(String newValue) {
 		if (newValue != null) {
-			window.showNotification(newValue.toString());
+			window.showNotification(newValue);
 		}
 	}
 }

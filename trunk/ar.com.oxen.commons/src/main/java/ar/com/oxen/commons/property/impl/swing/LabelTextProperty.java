@@ -18,6 +18,6 @@ public class LabelTextProperty implements Property<String> {
 
 	@Override
 	public void set(String newValue) {
-		this.label.setText((String) newValue);
+		this.label.setText(newValue);
 	}
 }

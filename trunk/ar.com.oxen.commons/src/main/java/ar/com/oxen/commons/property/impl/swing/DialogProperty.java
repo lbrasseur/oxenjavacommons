@@ -14,7 +14,7 @@ public class DialogProperty implements Property<String> {
 	@Override
 	public void set(String newValue) {
 		if (newValue != null) {
-			JOptionPane.showMessageDialog(null, newValue.toString());
+			JOptionPane.showMessageDialog(null, newValue);
 		}
 	}
 }

@@ -1,7 +1,7 @@
 package ar.com.oxen.commons.property.impl.swing;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 import javax.swing.JTextField;
 
@@ -16,9 +16,9 @@ public class TextFieldTextProperty extends SimpleObservable implements
 		super();
 		this.textField = textField;
 
-		this.textField.addKeyListener(new KeyAdapter() {
+		this.textField.addFocusListener(new FocusAdapter() {
 			@Override
-			public void keyReleased(KeyEvent e) {
+			public void focusLost(FocusEvent e) {
 				TextFieldTextProperty.this.notifyObservers();
 			}
 		});
