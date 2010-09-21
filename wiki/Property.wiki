@@ -1,5 +1,5 @@
 #summary Properties and MVP example
-#labels properties,mvp,swing,vaadin
+#labels properties,mvp,swing,vaadin,binding
 
 = Introduction =
 This API provides a way for accessing and binding properties.
