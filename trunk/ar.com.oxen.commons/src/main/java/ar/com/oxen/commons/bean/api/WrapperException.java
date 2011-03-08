@@ -1,11 +1,13 @@
 package ar.com.oxen.commons.bean.api;
 
+import ar.com.oxen.commons.exception.api.BaseException;
+
 /**
  * Wrapper related exception.
  * 
  * @author lautaro.brasseur
  */
-public class WrapperException extends RuntimeException {
+public class WrapperException extends BaseException {
 	/**
 	 * Serializable ID.
 	 */
