@@ -31,6 +31,22 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<classpathContainers>
+						<classpathContainer>org.eclipse.pde.core.requiredPlugins</classpathContainer>
+					</classpathContainers>
+					<additionalBuildcommands>
+						<buildcommand>org.eclipse.pde.ManifestBuilder</buildcommand>
+						<buildcommand>org.eclipse.pde.SchemaBuilder</buildcommand>
+					</additionalBuildcommands>
+					<additionalProjectnatures>
+						<projectnature>org.eclipse.pde.PluginNature</projectnature>
+					</additionalProjectnatures>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>
