@@ -5,4 +5,6 @@ Bundle-SymbolicName: ar.com.oxen.commons
 Bundle-Version: 1.0.0.SNAPSHOT
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: ar.com.oxen.commons.dao.api,
+ ar.com.oxen.commons.eventbus.api,
+ ar.com.oxen.commons.eventbus.impl.simple,
  ar.com.oxen.commons.exception.api
