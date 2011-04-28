@@ -26,9 +26,14 @@
 			<url>http://download.java.net/maven/2</url>
 		</repository>
 		<repository>
+			<id>sonatype</id>
+			<name>sonatype</name>
+			<url>https://oss.sonatype.org/content/repositories/releases/</url>
+		</repository>
+		<repository>
 			<id>oxen</id>
 			<name>oxen</name>
-			<url>http://oxen.no-ip.org:10080/artifactory/repo</url>
+			<url>http://servidor.oxen.com.ar/artifactory/repo</url>
 		</repository>
 	</repositories>
 </project>
