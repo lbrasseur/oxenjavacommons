@@ -1,5 +1,7 @@
 package ar.com.oxen.commons.bean.impl.simple;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.List;
@@ -43,9 +45,10 @@ public class SimpleClassWrapper<T> implements ClassWrapper<T> {
 		for (Method method : clazz.getMethods()) {
 			String methodName = method.getName();
 			if (methodName.startsWith("get") && !methodName.equals("getClass")) {
-				descriptors.add(new PropertyDescriptor(methodName.substring(3,
-						4).toLowerCase()
-						+ methodName.substring(4), method.getReturnType()));
+				String name = methodName.substring(3, 4).toLowerCase()
+						+ methodName.substring(4);
+				descriptors.add(new PropertyDescriptor(name, method
+						.getReturnType(), this.getAnnotations(name)));
 
 			}
 		}
@@ -59,7 +62,7 @@ public class SimpleClassWrapper<T> implements ClassWrapper<T> {
 	@Override
 	public PropertyDescriptor getPropertyDescriptor(String name) {
 		return new PropertyDescriptor(name, getMethod("get" + capitalize(name))
-				.getReturnType());
+				.getReturnType(), this.getAnnotations(name));
 	}
 
 	/**
@@ -99,5 +102,25 @@ public class SimpleClassWrapper<T> implements ClassWrapper<T> {
 	 */
 	protected String capitalize(String text) {
 		return text.substring(0, 1).toUpperCase() + text.substring(1);
+	}
+
+	/**
+	 * Gets annotations for a given field.
+	 * 
+	 * @param name
+	 *            the field name
+	 * @return An array with annotations
+	 */
+	private Annotation[] getAnnotations(String name) {
+		try {
+			for (Field field : this.clazz.getDeclaredFields()) {
+				if (field.getName().equals(name)) {
+					return field.getAnnotations();
+				}
+			}
+			return null;
+		} catch (SecurityException e) {
+			throw new NoSuchPropertyException(name, e);
+		}
 	}
 }
