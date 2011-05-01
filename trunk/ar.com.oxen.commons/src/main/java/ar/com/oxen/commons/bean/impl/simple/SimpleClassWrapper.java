@@ -47,7 +47,7 @@ public class SimpleClassWrapper<T> implements ClassWrapper<T> {
 			if (methodName.startsWith("get") && !methodName.equals("getClass")) {
 				String name = methodName.substring(3, 4).toLowerCase()
 						+ methodName.substring(4);
-				descriptors.add(new PropertyDescriptor(name, method
+				descriptors.add(new SimplePropertyDescriptor(name, method
 						.getReturnType(), this.getAnnotations(name)));
 
 			}
@@ -61,7 +61,7 @@ public class SimpleClassWrapper<T> implements ClassWrapper<T> {
 	 */
 	@Override
 	public PropertyDescriptor getPropertyDescriptor(String name) {
-		return new PropertyDescriptor(name, getMethod("get" + capitalize(name))
+		return new SimplePropertyDescriptor(name, getMethod("get" + capitalize(name))
 				.getReturnType(), this.getAnnotations(name));
 	}
 
