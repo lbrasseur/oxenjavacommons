@@ -3,46 +3,20 @@ package ar.com.oxen.commons.bean.api;
 import java.lang.annotation.Annotation;
 
 /**
- * Class used to describe a property. Replaces java.beans.PropertyDescriptor
- * since it is not available in Android.
+ * Interface used to describe a property. Replaces java.beans.PropertyDescriptor
+ * since it is not available in Android. Also, it adds some functionality such
+ * as annotation processing.
  * 
  * @author lbrasseur
- * 
  */
-public class PropertyDescriptor {
-	private String name;
-	private Class<?> type;
-	private Annotation[] annotations;
+public interface PropertyDescriptor {
 
-	public PropertyDescriptor(String name, Class<?> type,
-			Annotation[] annotations) {
-		super();
-		this.name = name;
-		this.type = type;
-		this.annotations = annotations;
-	}
+	String getName();
 
-	public String getName() {
-		return name;
-	}
+	Class<?> getType();
 
-	public Class<?> getType() {
-		return type;
-	}
+	Annotation[] getAnnotations();
 
-	public Annotation[] getAnnotations() {
-		return annotations;
-	}
+	<T> T getAnnotation(Class<T> annotationClass);
 
-	@SuppressWarnings("unchecked")
-	public <T> T getAnnotation(Class<T> annotationClass) {
-		if (this.annotations != null) {
-			for (Annotation annotation : this.annotations) {
-				if (annotationClass.isAssignableFrom(annotation.getClass())) {
-					return (T) annotation;
-				}
-			}
-		}
-		return null;
-	}
 }
