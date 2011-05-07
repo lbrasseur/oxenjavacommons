@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ar.com.oxen</groupId>
 	<artifactId>ar.com.oxen</artifactId>
@@ -36,4 +37,11 @@
 			<url>http://servidor.oxen.com.ar/artifactory/repo</url>
 		</repository>
 	</repositories>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>servidor.oxen.com.ar</id>
+			<name>servidor.oxen.com.ar-snapshots</name>
+			<url>http://servidor.oxen.com.ar/artifactory/libs-snapshot-local</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>
