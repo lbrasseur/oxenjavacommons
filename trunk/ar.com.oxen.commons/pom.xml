@@ -6,11 +6,11 @@
 	<parent>
 		<artifactId>ar.com.oxen</artifactId>
 		<groupId>ar.com.oxen</groupId>
-		<version>1.0-SNAPSHOT</version>
+		<version>1.0</version>
 	</parent>
 	<groupId>ar.com.oxen.commons</groupId>
 	<artifactId>ar.com.oxen.commons</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>ar.com.oxen.commons</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
