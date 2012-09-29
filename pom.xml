@@ -5,7 +5,7 @@
 	<groupId>ar.com.oxen</groupId>
 	<artifactId>ar.com.oxen</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0</version>
+	<version>1.1-SNAPSHOT</version>
 	<name>ar.com.oxen</name>
 	<url>http://maven.apache.org</url>
 	<modules>
@@ -22,6 +22,16 @@
 			<id>sonatype</id>
 			<name>sonatype</name>
 			<url>https://oss.sonatype.org/content/repositories/releases/</url>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.bundles.release</id>
+			<name>SpringSource Enterprise Bundle Repository - SpringSource Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/release</url>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.bundles.external</id>
+			<name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/external</url>
 		</repository>
 		<repository>
 			<id>oxen</id>

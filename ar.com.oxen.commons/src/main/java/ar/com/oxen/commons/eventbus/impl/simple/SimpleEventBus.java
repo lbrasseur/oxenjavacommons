@@ -13,6 +13,7 @@ import ar.com.oxen.commons.eventbus.api.EventHandler;
 import ar.com.oxen.commons.eventbus.api.EventHandlerMethod;
 
 import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
 
 public class SimpleEventBus implements EventBus {
@@ -32,7 +33,8 @@ public class SimpleEventBus implements EventBus {
 
 	@SuppressWarnings("unchecked")
 	public synchronized void fireEvent(Object event, String topic) {
-		for (AbstractInfo handlerInfo : this.handlers.get(event.getClass())) {
+		for (AbstractInfo handlerInfo : Lists.newLinkedList(this.handlers
+				.get(event.getClass()))) {
 			EventHandler<Object> eventHandler = (EventHandler<Object>) handlerInfo
 					.getEventHandler();
 			if (eventHandler != null
