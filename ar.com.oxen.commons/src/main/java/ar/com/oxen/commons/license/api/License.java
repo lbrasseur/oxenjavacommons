@@ -1,9 +1,9 @@
 package ar.com.oxen.commons.license.api;
 
-public interface License {
-	byte[] getInfo();
+import java.io.Serializable;
 
-	byte[] getRequesterId();
+public interface License<I extends Serializable> extends Serializable {
+	I getInfo();
 
 	byte[] getAuthorization();
 }

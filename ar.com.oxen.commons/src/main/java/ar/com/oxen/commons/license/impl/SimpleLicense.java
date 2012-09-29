@@ -1,31 +1,34 @@
 package ar.com.oxen.commons.license.impl;
 
+import java.io.Serializable;
+import java.util.Arrays;
+
 import ar.com.oxen.commons.license.api.License;
 
-public class SimpleLicense implements License {
-	private byte[] info;
-	private byte[] requesterId;
+public class SimpleLicense<I extends Serializable> implements License<I> {
+	private static final long serialVersionUID = 2905278555167754416L;
+	private I info;
 	private byte[] authorization;
 
-	public SimpleLicense(byte[] info, byte[] requesterId, byte[] authorization) {
+	public SimpleLicense(I info, byte[] authorization) {
 		super();
 		this.info = info;
-		this.requesterId = requesterId;
 		this.authorization = authorization;
 	}
 
 	@Override
-	public byte[] getInfo() {
+	public I getInfo() {
 		return this.info;
-	}
-
-	@Override
-	public byte[] getRequesterId() {
-		return this.requesterId;
 	}
 
 	@Override
 	public byte[] getAuthorization() {
 		return this.authorization;
+	}
+
+	@Override
+	public String toString() {
+		return "SimpleLicense [info=" + info + ", authorization="
+				+ Arrays.toString(authorization) + "]";
 	}
 }
