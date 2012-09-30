@@ -1,14 +1,30 @@
 #summary Licensing module.
-#labels license,signature,hardware
+#labels license,signature,hardware,key
 
 = Introduction =
+This section explains how the licensing module is designed.
 
-Add your content here.
+= Licensing process =
+== Requesting a license ==
+In order to request a license, you must create a license info. Since license info is domain-specific, it bust be implemented by a custom class.
+
+All the classes accessing such info have a type parameter for such object. This way, the user can store the user licence information in any class. There is only one restriction: the license info must be serializable.
+
+There is a default implementation, [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/impl/DefaultLicenseInfo.java DefaultLicenseInfo], which validates hardware and expiration date.
+
+Once the license information is created, it must be serialized using a [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/api/LicenseSerializer.java LicenseSerializer] in order to send it for approval.
+
+The module doesn't define how the license must be sent. However, since it is serialized to String, it could be sent over web services, mail, etc.
+
+== Authorizing a license ==
+
+== Validating a license ==
+
+= Specific API  =
+
+inyeccion de providers, etc.
 
 
-= Details =
+= Provided implementations =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+= Example with Guice =
