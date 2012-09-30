@@ -2,6 +2,10 @@ package ar.com.oxen.commons.converter.impl;
 
 import ar.com.oxen.commons.converter.api.Converter;
 
+/**
+ * Byte array to byte array converter that removes a salt form an obfuscated
+ * message.
+ */
 public class UnsaltConverter implements Converter<byte[], byte[]> {
 	@Override
 	public byte[] convert(byte[] source) {

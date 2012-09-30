@@ -13,6 +13,13 @@ import ar.com.oxen.commons.license.api.LicenseAuthorizer;
 import ar.com.oxen.commons.license.api.PrivateKeyProvider;
 import ar.com.oxen.commons.license.api.SignatureProvider;
 
+/**
+ * {@link LicenseAuthorizer} based on digital signatures and
+ * {@link Converter}.
+ * 
+ * @param <I>
+ *            The license info type
+ */
 public class SignatureLicenseAuthorizer<I extends Serializable> implements
 		LicenseAuthorizer<I> {
 	private SignatureProvider signatureProvider;

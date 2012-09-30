@@ -6,6 +6,9 @@ import java.security.Signature;
 import ar.com.oxen.commons.license.api.LicenceException;
 import ar.com.oxen.commons.license.api.SignatureProvider;
 
+/**
+ * Signature provider which uses standard Java security classes.
+ */
 public class DefaultSignatureProvider implements SignatureProvider {
 	private String algorithm;
 

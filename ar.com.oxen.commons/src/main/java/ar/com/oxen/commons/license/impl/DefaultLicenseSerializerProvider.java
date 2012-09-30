@@ -15,30 +15,33 @@ import ar.com.oxen.commons.converter.impl.UnsaltConverter;
 import ar.com.oxen.commons.license.api.License;
 import ar.com.oxen.commons.license.api.LicenseSerializer;
 
+/**
+ * JSR330 provider for creating a default {@link LicenseSerializer}
+ * implementation, using converters.
+ * 
+ * @param <I>
+ *            The license info type
+ */
 public class DefaultLicenseSerializerProvider<I extends Serializable>
 		implements Provider<LicenseSerializer<I>> {
 	@Override
 	public LicenseSerializer<I> get() {
 		Converter<I, String> infoToStringConverter = ConverterBuilder
 				.create(new SerializableToBytesConverter<I>())
-				.add(new SaltConverter())
-				.add(new BytesToBase64Converter())
+				.add(new SaltConverter()).add(new BytesToBase64Converter())
 				.build();
 		Converter<License<I>, String> licenseToStringConverter = ConverterBuilder
 				.create(new SerializableToBytesConverter<License<I>>())
-				.add(new SaltConverter())
-				.add(new BytesToBase64Converter())
+				.add(new SaltConverter()).add(new BytesToBase64Converter())
 				.build();
 		Converter<String, I> stringToInfoConverter = ConverterBuilder
 				.create(new Base64ToBytesConverter())
 				.add(new UnsaltConverter())
-				.add(new BytesToSerializableConverter<I>())
-				.build();
+				.add(new BytesToSerializableConverter<I>()).build();
 		Converter<String, License<I>> stringToLicenseConverter = ConverterBuilder
 				.create(new Base64ToBytesConverter())
 				.add(new UnsaltConverter())
-				.add(new BytesToSerializableConverter<License<I>>())
-				.build();
+				.add(new BytesToSerializableConverter<License<I>>()).build();
 
 		return new ConverterLicenseSerializer<I>(infoToStringConverter,
 				licenseToStringConverter, stringToInfoConverter,

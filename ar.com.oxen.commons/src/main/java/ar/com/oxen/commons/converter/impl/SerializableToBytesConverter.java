@@ -8,6 +8,9 @@ import java.io.Serializable;
 import ar.com.oxen.commons.converter.api.ConversionException;
 import ar.com.oxen.commons.converter.api.Converter;
 
+/**
+ * Serializable object to byte array converter.
+ */
 public class SerializableToBytesConverter<S extends Serializable> implements
 		Converter<S, byte[]> {
 	@Override

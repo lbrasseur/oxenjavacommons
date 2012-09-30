@@ -6,6 +6,9 @@ import java.security.NoSuchAlgorithmException;
 import ar.com.oxen.commons.converter.api.ConversionException;
 import ar.com.oxen.commons.converter.api.Converter;
 
+/**
+ * Byte array to byte array converter that applies a message digest algorithm.
+ */
 public class DigestConverter implements Converter<byte[], byte[]> {
 	private String algorithm;
 

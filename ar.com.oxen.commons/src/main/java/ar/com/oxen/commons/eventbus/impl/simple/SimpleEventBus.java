@@ -16,6 +16,11 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
 
+/**
+ * Simple event bus implementation.<br>
+ * Includes automatic de-subscription of garbage-collected object (using weak
+ * references).
+ */
 public class SimpleEventBus implements EventBus {
 	private Multimap<Class<?>, AbstractInfo> handlers = HashMultimap.create();
 	private Map<Reference<?>, AbstractInfo> referenceToHandler = new HashMap<Reference<?>, AbstractInfo>();

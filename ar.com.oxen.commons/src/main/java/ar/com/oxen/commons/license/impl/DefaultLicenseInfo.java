@@ -4,6 +4,12 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;
 
+/**
+ * A common-use license info, which includes a company name, hardware
+ * identification and an expiration date.<br>
+ * However, in most cases, this implementation will be discarded in favor of a
+ * domain-specific implementation.
+ */
 public class DefaultLicenseInfo implements Serializable {
 	private static final long serialVersionUID = -5962868381565454809L;
 	private String customerName;

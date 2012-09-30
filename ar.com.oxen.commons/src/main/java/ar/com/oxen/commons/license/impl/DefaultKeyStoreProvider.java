@@ -12,6 +12,9 @@ import java.security.cert.CertificateException;
 import ar.com.oxen.commons.license.api.KeyStoreProvider;
 import ar.com.oxen.commons.license.api.LicenceException;
 
+/**
+ * Loads the default Java key store.
+ */
 public class DefaultKeyStoreProvider implements KeyStoreProvider {
 	@Override
 	public KeyStore getKeyStore() {
