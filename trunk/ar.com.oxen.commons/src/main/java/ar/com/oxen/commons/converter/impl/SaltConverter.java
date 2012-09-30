@@ -4,6 +4,10 @@ import java.security.SecureRandom;
 
 import ar.com.oxen.commons.converter.api.Converter;
 
+/**
+ * Byte array to byte array converter that applies a random salt in order to
+ * obfuscate the message.
+ */
 public class SaltConverter implements Converter<byte[], byte[]> {
 	@Override
 	public byte[] convert(byte[] source) {

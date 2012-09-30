@@ -1,5 +1,6 @@
 package ar.com.oxen.commons.license.impl;
 
+import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
@@ -9,6 +10,9 @@ import ar.com.oxen.commons.license.api.KeyStoreProvider;
 import ar.com.oxen.commons.license.api.LicenceException;
 import ar.com.oxen.commons.license.api.PrivateKeyProvider;
 
+/**
+ * Private key provider that reads the key from a {@link KeyStore}.
+ */
 public class KeyStorePrivateKeyProvider implements PrivateKeyProvider {
 	private String alias;
 	private String password;

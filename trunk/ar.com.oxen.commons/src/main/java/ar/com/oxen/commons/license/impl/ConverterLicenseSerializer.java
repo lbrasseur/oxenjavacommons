@@ -6,6 +6,13 @@ import ar.com.oxen.commons.converter.api.Converter;
 import ar.com.oxen.commons.license.api.License;
 import ar.com.oxen.commons.license.api.LicenseSerializer;
 
+/**
+ * A {@link Converter}-based license serializer. It receives 4 converters (for
+ * both, license and info, in both ways).
+ * 
+ * @param <I>
+ *            The license info type
+ */
 public class ConverterLicenseSerializer<I extends Serializable> implements
 		LicenseSerializer<I> {
 	private Converter<I, String> infoToStringConverter;

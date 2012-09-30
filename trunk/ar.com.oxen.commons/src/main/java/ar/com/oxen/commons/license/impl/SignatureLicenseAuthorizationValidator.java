@@ -12,6 +12,13 @@ import ar.com.oxen.commons.license.api.LicenseAuthorizationValidator;
 import ar.com.oxen.commons.license.api.PublicKeyProvider;
 import ar.com.oxen.commons.license.api.SignatureProvider;
 
+/**
+ * {@link LicenseAuthorizationValidator} based on digital signatures and
+ * {@link Converter}.
+ * 
+ * @param <I>
+ *            The license info type
+ */
 public class SignatureLicenseAuthorizationValidator<I extends Serializable>
 		implements LicenseAuthorizationValidator<I> {
 	private SignatureProvider signatureProvider;

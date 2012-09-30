@@ -1,5 +1,6 @@
 package ar.com.oxen.commons.license.impl;
 
+import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.PublicKey;
 
@@ -7,6 +8,9 @@ import ar.com.oxen.commons.license.api.KeyStoreProvider;
 import ar.com.oxen.commons.license.api.LicenceException;
 import ar.com.oxen.commons.license.api.PublicKeyProvider;
 
+/**
+ * Public key provider that reads the key from a {@link KeyStore}.
+ */
 public class KeyStorePublicKeyProvider implements PublicKeyProvider {
 	private String alias;
 	private KeyStoreProvider keyStoreProvider;

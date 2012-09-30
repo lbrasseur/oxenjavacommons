@@ -4,6 +4,9 @@ import org.apache.commons.codec.binary.Base64;
 
 import ar.com.oxen.commons.converter.api.Converter;
 
+/**
+ * Base 64 to byte array converter.
+ */
 public class Base64ToBytesConverter implements Converter<String, byte[]> {
 	@Override
 	public byte[] convert(String source) {

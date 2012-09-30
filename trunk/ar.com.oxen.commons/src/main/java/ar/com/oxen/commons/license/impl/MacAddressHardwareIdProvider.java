@@ -8,6 +8,10 @@ import java.net.UnknownHostException;
 import ar.com.oxen.commons.license.api.HardwareIdProvider;
 import ar.com.oxen.commons.license.api.LicenceException;
 
+/**
+ * {@link HardwareIdProvider} implementation that reads localhost network
+ * interface MAC address.
+ */
 public class MacAddressHardwareIdProvider implements HardwareIdProvider {
 	@Override
 	public byte[] getHardwareId() {

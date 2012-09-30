@@ -3,6 +3,10 @@ package ar.com.oxen.commons.license.impl;
 import ar.com.oxen.commons.converter.api.Converter;
 import ar.com.oxen.commons.license.api.HardwareIdProvider;
 
+/**
+ * A decorator {@link HardwareIdProvider} which uses a {@link Converter} in
+ * order to transform the output.
+ */
 public class ConverterHardwareIdProvider implements HardwareIdProvider {
 	private HardwareIdProvider hardwareIdProvider;
 	private Converter<byte[], byte[]> converter;

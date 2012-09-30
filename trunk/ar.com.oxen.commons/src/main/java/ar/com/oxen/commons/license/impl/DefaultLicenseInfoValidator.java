@@ -8,6 +8,11 @@ import javax.inject.Inject;
 import ar.com.oxen.commons.license.api.HardwareIdProvider;
 import ar.com.oxen.commons.license.api.LicenseInfoValidator;
 
+/**
+ * A {@link LicenseInfoValidator} implementation for {@link DefaultLicenseInfo}.<br>
+ * It checks the expiration date and the hardware identification.<br>
+ * Any of these values can be null. In such case, the value is ignored.
+ */
 public class DefaultLicenseInfoValidator implements
 		LicenseInfoValidator<DefaultLicenseInfo> {
 	private HardwareIdProvider hardwareIdProvider;

@@ -5,6 +5,12 @@ import java.util.Arrays;
 
 import ar.com.oxen.commons.license.api.License;
 
+/**
+ * Bean-based {@link License} implementation.
+ * 
+ * @param <I>
+ *            The license info type
+ */
 public class SimpleLicense<I extends Serializable> implements License<I> {
 	private static final long serialVersionUID = 2905278555167754416L;
 	private I info;

@@ -10,6 +10,13 @@ import ar.com.oxen.commons.license.api.LicenseAuthorizer;
 import ar.com.oxen.commons.license.api.PrivateKeyProvider;
 import ar.com.oxen.commons.license.api.SignatureProvider;
 
+/**
+ * JSR330 provider for creating a default {@link LicenseAuthorizer}
+ * implementation, using digital signatures.
+ * 
+ * @param <I>
+ *            The license info type
+ */
 public class DefaultLicenseAuthorizerProvider<I extends Serializable>
 		implements Provider<LicenseAuthorizer<I>> {
 	private SignatureProvider signatureProvider;
