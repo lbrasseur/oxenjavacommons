@@ -11,7 +11,7 @@ At the moment of developing this component, we didn't find a implementation whic
   * Both, annotation and handler subscription models.
   * Automatic subscriptor removal when such subscriptor is no longer reachable (weak subscription).
 
-So, we created an interface and built a [http://code.google.com/p/oxenjavacommons/source/browse/#svn%2Ftrunk%2Far.com.oxen.commons%2Fsrc%2Fmain%2Fjava%2Far%2Fcom%2Foxen%2Fcommons%2Feventbus%2Fimpl simple implementation]. In a (near) future, we would be able to change it for another one.
+So, we created an interface and built a [http://code.google.com/p/oxenjavacommons/source/browse/#svn%2Ftrunk%2Far.com.oxen.commons%2Fsrc%2Fmain%2Fjava%2Far%2Fcom%2Foxen%2Fcommons%2Feventbus%2Fimpl%2Fsimple simple implementation]. In a (near) future, we would be able to change it for another one.
 
 = Details =
 The main interface is [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/eventbus/api/EventBus.java EventBus].
