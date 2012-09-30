@@ -42,10 +42,103 @@ There is also some provider interfaces that help in creating modular implementat
   * [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/api/PublicKeyProvider.java PublicKeyProvider]
   * [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/api/SignatureProvider.java SignatureProvider]
 
-One might ask why the module don't just use JSR330 providers. The answer is that, since all of them return standar Java classes, injecting them using a container would require a mechanism in order to identify them. For example, a custom annotation. Creating specific interfaces seemed a more elegant solution.
+One might ask why the module don't just use [http://www.jcp.org/en/jsr/detail?id=330 JSR330] providers. The answer is that, since all of them return standar Java classes, injecting them using a container would require a mechanism in order to identify them. For example, a custom annotation. Creating specific interfaces seemed a more elegant solution.
 
-= Provided implementations =
+= Included implementations =
+The module provide many [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/impl/ implementations]. Describing them here would mean duplicating documentation (and there is a brief explanation on javadoc) , so we aren't going to do that.
+
+However, as a general rule, the implementation name describes the approach used in order to implement the interface semantics. Many of them just have a "Default" prefix, which means that they implements the functionality in a way that would be commonly used, but they aren't specific to one implementation.
+
+Also, when custom creation is needed, a [http://www.jcp.org/en/jsr/detail?id=330 JSR330] provider. This enforces integration with containers such as [http://code.google.com/p/google-guice/ Gucie]. However, the providers and objects could be created and injected manually.
 
 = Example with Guice =
+{{{
+Guice.createInjector(new TestModule()).getInstance(Test.class);
+
+public class TestModule extends AbstractModule {
+
+	@Override
+	protected void configure() {
+		/* Configuro cómo identificar el hardware - un SHA-512 de la dirección MAC en este caso */
+		bind(HardwareIdProvider.class).toInstance(
+				new ConverterHardwareIdProvider(
+						new MacAddressHardwareIdProvider(),
+						new DigestConverter("SHA-512")));
+		
+		/* Configuro qué firma digital usar */
+		bind(SignatureProvider.class).toInstance(
+				new DefaultSignatureProvider("DSA"));
+		
+		/* Configuro clave publica y privada */
+		KeyStoreProvider ksp = new DefaultKeyStoreProvider();
+		bind(PublicKeyProvider.class).toInstance(
+				new KeyStorePublicKeyProvider("miClave", ksp));
+		bind(PrivateKeyProvider.class).toInstance(
+				new KeyStorePrivateKeyProvider("miClave", "pelotita", ksp));
+		
+		/* Configuro cómo se serializarán a String las licencias */
+		bind(new TypeLiteral<LicenseSerializer<DefaultLicenseInfo>>() {})
+			.toProvider(new TypeLiteral<DefaultLicenseSerializerProvider<DefaultLicenseInfo>>() {});
+
+		/* Configuro cómo se autorizarán las licencias */
+		bind(new TypeLiteral<LicenseAuthorizer<DefaultLicenseInfo>>() {})
+			.toProvider(new TypeLiteral<DefaultLicenseAuthorizerProvider<DefaultLicenseInfo>>() {});
+
+		/* Configuro cómo se validarán las licencias */
+		bind(new TypeLiteral<LicenseValidator<DefaultLicenseInfo>>() {})
+			.to(new TypeLiteral<DefaultLicenseValidator<DefaultLicenseInfo>>() {});
+		
+		/* Por un lado, la validación de la autorización (firma digital) */
+		bind(new TypeLiteral<LicenseAuthorizationValidator<DefaultLicenseInfo>>() {})
+			.toProvider(new TypeLiteral<DefaultLicenseAuthorizationValidatorProvider<DefaultLicenseInfo>>() {});
+		
+		/* Por el otro, la validación de la información de licencia (específica de cada app) */
+		bind(new TypeLiteral<LicenseInfoValidator<DefaultLicenseInfo>>() {})
+			.to(DefaultLicenseInfoValidator.class);
+	}
+
+}
+
+public class Test {
+	@Inject
+	public Test(LicenseSerializer<DefaultLicenseInfo> serializer,
+			LicenseAuthorizer<DefaultLicenseInfo> authorizer,
+			LicenseValidator<DefaultLicenseInfo> validator,
+			HardwareIdProvider hardwareIdProvider) {
+
+		DefaultLicenseInfo licenseInfo = new DefaultLicenseInfo("IBM",
+				new Date(System.currentTimeMillis() + 2000),
+				hardwareIdProvider.getHardwareId());
+
+		String serializedInfo = serializer
+				.serializeLicenceInfo(licenseInfo);
+		System.out.println("Info serializada: " + serializedInfo);
+		System.out.println("Info deserializada: "
+				+ serializer.deserializeLicenceInfo(serializedInfo));
+
+		License<DefaultLicenseInfo> license = authorizer
+				.authorize(licenseInfo);
+		System.out.println("Licencia valida: "
+				+ validator.validate(license));
+
+		String serializedLicense = serializer.serializeLicence(license);
+		System.out.println("Licencia serializada: " + serializedLicense);
+		System.out.println("Licencia deserializada: "
+				+ serializer.deserializeLicence(serializedLicense));
+		System.out.println("Licencia deserializada valida: "
+				+ validator.validate(serializer
+						.deserializeLicence(serializedLicense)));
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+		}
+		System.out.println("Licencia valida despues de 2 segundos: "
+				+ validator.validate(serializer
+						.deserializeLicence(serializedLicense)));
+	}
+}
+}}}
+
 
 = Bytecode obfuscation =
