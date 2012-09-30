@@ -142,3 +142,5 @@ As you may know, Java can be easily decompiled. This is a huge problem in softwa
 In order to mitigate this problem, a code obfuscator can be used. [http://proguard.sourceforge.net/ ProGuard] is a popular and free implementation.
 
 When using an obfuscator, be sure of including the license classes into the obfuscation process.  If they aren't included, they could be easily replaced by a attacker.
+
+Obfuscation using a container should be easier using class injection configuration than using XML (for example, [http://www.springsource.org/ Spring] with XML). In general, avoid using dynamic class loading (ie, reading the name from a Stirng, a file, etc.) since obfuscators usually change the class names.
