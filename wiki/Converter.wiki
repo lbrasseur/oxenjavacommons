@@ -17,7 +17,7 @@ As we said before, the [http://code.google.com/p/oxenjavacommons/source/browse/t
 We also provide some [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/converter/impl/ converter implementations]. However, creating an implementation for each requirement would require an exponential number of classes. Because of this, we created the [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/converter/impl/CompoundConverter.java CompoundConverter], which chaines two converters.
 
 = Converter Builder =
-Creating many converters and connecting them using [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/converter/impl/CompoundConverter.java CompoundConverter]s woudl be very verbose. In order to solve this problem, we created the http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/converter/api/ConverterBuilder.java ConverterBuilder] class.
+Creating many converters and connecting them using [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/converter/impl/CompoundConverter.java CompoundConverter]s woudl be very verbose. In order to solve this problem, we created the [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/converter/api/ConverterBuilder.java ConverterBuilder] class.
 It uses method chaining in order to allow a concise, type-safe converter creation.
 
 == Examples ==
@@ -25,5 +25,36 @@ It uses method chaining in order to allow a concise, type-safe converter creatio
 Converter<Date, String> convertidor = ConverterBuilder
 		.create(new SerializableToBytesConverter<Date>())
 		.add(new BytesToBase64Converter())
+		.build();
+}}}
+
+{{{
+Converter<String, Date> revertidor = ConverterBuilder
+		.create(new Base64ToBytesConverter())
+		.add(new BytesToSerializableConverter<Date>())
+		.build();
+}}}
+
+{{{
+Converter<Date, String> hash = ConverterBuilder
+		.create(new SerializableToBytesConverter<Date>())
+		.add(new DigestConverter("SHA-512"))
+		.add(new BytesToBase64Converter())
+		.build();
+}}}
+
+{{{
+Converter<String, String> convertidor = ConverterBuilder
+		.create(new SerializableToBytesConverter<String>())
+		.add(new SaltConverter())
+		.add(new BytesToBase64Converter())
+		.build();
+{{{
+
+{{{
+Converter<String, String> revertidor = ConverterBuilder
+		.create(new Base64ToBytesConverter())
+		.add(new UnsaltConverter())
+		.add(new BytesToSerializableConverter<String>())
 		.build();
 }}}
