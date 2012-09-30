@@ -17,8 +17,21 @@ Once the license information is created, it must be serialized using a [http://c
 The module doesn't define how the license must be sent. However, since it is serialized to String, it could be sent over web services, mail, etc.
 
 == Authorizing a license ==
+On the authorizer side, a String with the license info will be received. A [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/api/LicenseSerializer.java LicenseSerializer] compatible with the one used for creating the request must be used in order to reconstruct the license info from the received String.
+
+Once the license info is created, it can be displayed, mailed, etc. in order to be approved by an user. When the user decides to approve the request, it must use the [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/api/LicenseAuthorizer.java LicenseAuthorizer] component. It constructs an authorized [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/api/License.java License] from license info. The [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/api/License.java License] object contains all the license information, so the authorizer can modify it before sending it back to the requester.
+
+Once the license is authorized, it must be serialized back to String, again with [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/api/LicenseSerializer.java LicenseSerializer]. This way, all the data can be sent to the requester.
 
 == Validating a license ==
+When the original license requester recibes the String with license data, it must use the [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/api/LicenseSerializer.java LicenseSerializer] in order to construct the [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/api/License.java License] object.
+
+Once constructed, it can be validated using a [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/api/LicenseValidator.java LicenseValidator]. Mostly, this validation will involve two steps: validating the authorization and validating the license info. Since the license info validation process is domain-specific, we divide these two steps into 2 interfaces:
+
+  * [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/api/LicenseAuthorizationValidator.java LicenseAuthorizationValidator], which validates the authorization field. Since this process is implementation specific, we can provide common implementations such as a [http://docs.oracle.com/javase/7/docs/api/java/security/Signature.html Signature] based one.
+  * [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/api/LicenseInfoValidator.java LicenseInfoValidator], which validates the license info. We just provide an implementation for the default license info: [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/impl/DefaultLicenseInfoValidator.java DefaultLicenseInfoValidator]. 
+
+The default license validation implementation ([http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/impl/DefaultLicenseValidator.java DefaultLicenseValidator]) receives these two components and just performs an "and" over the two validations.
 
 = Specific API  =
 
@@ -28,3 +41,5 @@ inyeccion de providers, etc.
 = Provided implementations =
 
 = Example with Guice =
+
+= Bytecode obfuscation =
