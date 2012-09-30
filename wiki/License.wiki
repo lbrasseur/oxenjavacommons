@@ -33,10 +33,16 @@ Once constructed, it can be validated using a [http://code.google.com/p/oxenjava
 
 The default license validation implementation ([http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/impl/DefaultLicenseValidator.java DefaultLicenseValidator]) receives these two components and just performs an "and" over the two validations.
 
-= Specific API  =
+= Provider API  =
+There is also some provider interfaces that help in creating modular implementations. Such interfaces are:
 
-inyeccion de providers, etc.
+  * [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/api/HardwareIdProvider.java HardwareIdProvider]
+  * [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/api/KeyStoreProvider.java KeyStoreProvider]
+  * [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/api/PrivateKeyProvider.java PrivateKeyProvider]
+  * [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/api/PublicKeyProvider.java PublicKeyProvider]
+  * [http://code.google.com/p/oxenjavacommons/source/browse/trunk/ar.com.oxen.commons/src/main/java/ar/com/oxen/commons/license/api/SignatureProvider.java SignatureProvider]
 
+One might ask why the module don't just use JSR330 providers. The answer is that, since all of them return standar Java classes, injecting them using a container would require a mechanism in order to identify them. For example, a custom annotation. Creating specific interfaces seemed a more elegant solution.
 
 = Provided implementations =
 
