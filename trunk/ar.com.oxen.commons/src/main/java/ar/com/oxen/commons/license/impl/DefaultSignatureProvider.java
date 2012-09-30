@@ -3,11 +3,10 @@ package ar.com.oxen.commons.license.impl;
 import java.security.NoSuchAlgorithmException;
 import java.security.Signature;
 
-import javax.inject.Provider;
-
 import ar.com.oxen.commons.license.api.LicenceException;
+import ar.com.oxen.commons.license.api.SignatureProvider;
 
-public class DefaultSignatureProvider implements Provider<Signature> {
+public class DefaultSignatureProvider implements SignatureProvider {
 	private String algorithm;
 
 	public DefaultSignatureProvider(String algorithm) {
@@ -16,7 +15,7 @@ public class DefaultSignatureProvider implements Provider<Signature> {
 	}
 
 	@Override
-	public Signature get() {
+	public Signature getSignature() {
 		try {
 			return Signature.getInstance(this.algorithm);
 		} catch (NoSuchAlgorithmException e) {
