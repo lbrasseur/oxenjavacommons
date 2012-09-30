@@ -49,7 +49,7 @@ Converter<String, String> convertidor = ConverterBuilder
 		.add(new SaltConverter())
 		.add(new BytesToBase64Converter())
 		.build();
-{{{
+}}}
 
 {{{
 Converter<String, String> revertidor = ConverterBuilder
