@@ -72,9 +72,9 @@ public class TestModule extends AbstractModule {
 		/* Public an private key configuration */
 		KeyStoreProvider ksp = new DefaultKeyStoreProvider();
 		bind(PublicKeyProvider.class).toInstance(
-				new KeyStorePublicKeyProvider("miClave", ksp));
+				new KeyStorePublicKeyProvider("myKey", ksp));
 		bind(PrivateKeyProvider.class).toInstance(
-				new KeyStorePrivateKeyProvider("miClave", "pelotita", ksp));
+				new KeyStorePrivateKeyProvider("myKey", "myPassword", ksp));
 		
 		/* Serialization configuration */
 		bind(new TypeLiteral<LicenseSerializer<DefaultLicenseInfo>>() {})
