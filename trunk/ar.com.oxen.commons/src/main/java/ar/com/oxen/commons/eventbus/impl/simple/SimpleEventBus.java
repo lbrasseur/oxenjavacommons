@@ -5,6 +5,7 @@ import java.lang.ref.ReferenceQueue;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +14,6 @@ import ar.com.oxen.commons.eventbus.api.EventHandler;
 import ar.com.oxen.commons.eventbus.api.EventHandlerMethod;
 
 import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
 
 /**
@@ -38,7 +38,7 @@ public class SimpleEventBus implements EventBus {
 
 	@SuppressWarnings("unchecked")
 	public synchronized void fireEvent(Object event, String topic) {
-		for (AbstractInfo handlerInfo : Lists.newLinkedList(this.handlers
+		for (AbstractInfo handlerInfo : new ArrayList<AbstractInfo>(this.handlers
 				.get(event.getClass()))) {
 			EventHandler<Object> eventHandler = (EventHandler<Object>) handlerInfo
 					.getEventHandler();
