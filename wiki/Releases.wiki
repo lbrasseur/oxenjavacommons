@@ -1,0 +1,12 @@
+#summary Release information.
+
+= Introduction =
+
+This section contains information about changes made between different releases.
+
+= 1.1-SNAPSHOT =
+  * Licensing module.
+  * Event Bus fixes
+
+= 1.0 =
+  * Initial release
