@@ -61,7 +61,8 @@ public class SimpleEventBus implements EventBus {
 
 	@Override
 	public synchronized void removeHandler(EventHandler<?> handler) {
-		for (Map.Entry<Class<?>, AbstractInfo> entry : this.handlers.entries()) {
+		for (Map.Entry<Class<?>, AbstractInfo> entry : new ArrayList<Map.Entry<Class<?>, AbstractInfo>>(
+				this.handlers.entries())) {
 			if (handler.equals(entry.getValue().getEventHandler())) {
 				this.handlers.remove(entry.getKey(), entry.getValue());
 				this.referenceToHandler.remove(entry.getValue().getReference());
