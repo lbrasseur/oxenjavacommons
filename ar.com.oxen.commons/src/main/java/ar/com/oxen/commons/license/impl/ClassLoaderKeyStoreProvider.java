@@ -7,16 +7,17 @@ import java.io.InputStream;
  */
 public class ClassLoaderKeyStoreProvider extends AbstractKeyStoreProvider {
 	private String keyStorePath;
+	private Class<?> loaderClass;
 
 	public ClassLoaderKeyStoreProvider(String keyStorePath,
-			String keyStorePassword) {
+			Class<?> loaderClass, String keyStorePassword) {
 		super(keyStorePassword);
 		this.keyStorePath = keyStorePath;
+		this.loaderClass = loaderClass;
 	}
 
 	@Override
 	protected InputStream openKeyStoreInputStream() {
-		return ClassLoaderKeyStoreProvider.class
-				.getResourceAsStream(this.keyStorePath);
+		return this.loaderClass.getResourceAsStream(this.keyStorePath);
 	}
 }
