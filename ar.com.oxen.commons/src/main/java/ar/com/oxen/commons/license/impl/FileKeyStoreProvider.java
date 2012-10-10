@@ -10,15 +10,18 @@ import ar.com.oxen.commons.license.api.LicenceException;
 /**
  * KeyStore provider that reads KeyStore from a File.
  */
-public class FileKeyStoreProvider extends InputStreamKeyStoreProvider {
+public class FileKeyStoreProvider extends AbstractKeyStoreProvider {
+	private File keyStoreFile;
 
 	public FileKeyStoreProvider(File keyStoreFile, String keyStorePassword) {
-		super(buildfInputStream(keyStoreFile), keyStorePassword);
+		super(keyStorePassword);
+		this.keyStoreFile = keyStoreFile;
 	}
 
-	private static InputStream buildfInputStream(File keyStoreFile) {
+	@Override
+	protected InputStream openKeyStoreInputStream() {
 		try {
-			return new FileInputStream(keyStoreFile);
+			return new FileInputStream(this.keyStoreFile);
 		} catch (FileNotFoundException e) {
 			throw new LicenceException(e);
 		}
