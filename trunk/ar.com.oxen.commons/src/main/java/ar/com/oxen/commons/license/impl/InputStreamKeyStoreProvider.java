@@ -15,17 +15,20 @@ import ar.com.oxen.commons.license.api.LicenceException;
  */
 public class InputStreamKeyStoreProvider implements KeyStoreProvider {
 	private InputStream keyStoreInputStream;
+	private String keyStorePassword;
 
-	public InputStreamKeyStoreProvider(InputStream keyStoreInputStream) {
+	public InputStreamKeyStoreProvider(InputStream keyStoreInputStream,
+			String keyStorePassword) {
 		super();
 		this.keyStoreInputStream = keyStoreInputStream;
+		this.keyStorePassword = keyStorePassword;
 	}
 
 	@Override
 	public KeyStore getKeyStore() {
 		try {
 			KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
-			ks.load(this.keyStoreInputStream, null);
+			ks.load(this.keyStoreInputStream, this.keyStorePassword.toCharArray());
 			return ks;
 		} catch (KeyStoreException e) {
 			throw new LicenceException(e);
