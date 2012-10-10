@@ -12,8 +12,8 @@ import ar.com.oxen.commons.license.api.LicenceException;
  */
 public class FileKeyStoreProvider extends InputStreamKeyStoreProvider {
 
-	public FileKeyStoreProvider(File keyStoreFile) {
-		super(buildfInputStream(keyStoreFile));
+	public FileKeyStoreProvider(File keyStoreFile, String keyStorePassword) {
+		super(buildfInputStream(keyStoreFile), keyStorePassword);
 	}
 
 	private static InputStream buildfInputStream(File keyStoreFile) {
