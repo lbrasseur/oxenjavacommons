@@ -10,17 +10,11 @@ import java.security.cert.CertificateException;
 import ar.com.oxen.commons.license.api.KeyStoreProvider;
 import ar.com.oxen.commons.license.api.LicenceException;
 
-/**
- * KeyStore provider that reads KeyStore from an InputStream.
- */
-public class InputStreamKeyStoreProvider implements KeyStoreProvider {
-	private InputStream keyStoreInputStream;
+public abstract class AbstractKeyStoreProvider implements KeyStoreProvider {
 	private String keyStorePassword;
 
-	public InputStreamKeyStoreProvider(InputStream keyStoreInputStream,
-			String keyStorePassword) {
+	public AbstractKeyStoreProvider(String keyStorePassword) {
 		super();
-		this.keyStoreInputStream = keyStoreInputStream;
 		this.keyStorePassword = keyStorePassword;
 	}
 
@@ -28,7 +22,12 @@ public class InputStreamKeyStoreProvider implements KeyStoreProvider {
 	public KeyStore getKeyStore() {
 		try {
 			KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
-			ks.load(this.keyStoreInputStream, this.keyStorePassword.toCharArray());
+			InputStream keyStoreInputStream = this.openKeyStoreInputStream();
+
+			ks.load(keyStoreInputStream, this.keyStorePassword.toCharArray());
+
+			keyStoreInputStream.close();
+
 			return ks;
 		} catch (KeyStoreException e) {
 			throw new LicenceException(e);
@@ -40,4 +39,7 @@ public class InputStreamKeyStoreProvider implements KeyStoreProvider {
 			throw new LicenceException(e);
 		}
 	}
+
+	protected abstract InputStream openKeyStoreInputStream();
+
 }
