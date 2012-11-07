@@ -6,7 +6,8 @@ import java.util.Date;
 
 /**
  * A common-use license info, which includes a company name, hardware
- * identification and an expiration date.<br>
+ * identification and an expiration date. A "code" field is provided for generic
+ * use.<br>
  * However, in most cases, this implementation will be discarded in favor of a
  * domain-specific implementation.
  */
@@ -14,13 +15,15 @@ public class DefaultLicenseInfo implements Serializable {
 	private static final long serialVersionUID = -5962868381565454809L;
 	private String customerName;
 	private Date expirationDate;
+	private String code;
 	private byte[] hardwareId;
 
 	public DefaultLicenseInfo(String customerName, Date expirationDate,
-			byte[] hardwareId) {
+			String code, byte[] hardwareId) {
 		super();
 		this.customerName = customerName;
 		this.expirationDate = expirationDate;
+		this.code = code;
 		this.hardwareId = hardwareId;
 	}
 
@@ -32,6 +35,10 @@ public class DefaultLicenseInfo implements Serializable {
 		return expirationDate;
 	}
 
+	public String getCode() {
+		return code;
+	}
+
 	public byte[] getHardwareId() {
 		return hardwareId;
 	}
@@ -39,7 +46,7 @@ public class DefaultLicenseInfo implements Serializable {
 	@Override
 	public String toString() {
 		return "DefaultLicenseInfo [customerName=" + customerName
-				+ ", expirationDate=" + expirationDate + ", hardwareId="
-				+ Arrays.toString(hardwareId) + "]";
+				+ ", expirationDate=" + expirationDate + ", code=" + code
+				+ ", hardwareId=" + Arrays.toString(hardwareId) + "]";
 	}
 }
