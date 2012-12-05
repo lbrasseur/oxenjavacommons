@@ -5,6 +5,6 @@ Congratulations on their courage!
 
   * [http://crossmedia.com.mx/ CrossMedia] / [http://www.larousse.es/ Larousse]: Recetario. This project also uses [http://nibiru.googlecode.com Nibiru] and [http://oxeniphonecommons.googlecode.com Oxen iPhone Commons].
 
-  * [http://www.silex-it.com/ Silex] / [http://www.siderar.com.ar/ Ternium]: Simulador de Impuestos a Las Ganancias. This project also uses [http://nibiru.googlecode.com Nibiru]  and Nibiru Mobile.
+  * [http://www.silex-it.com/ Silex] / [http://www.siderar.com.ar/ Ternium]: Simulador de Impuestos a Las Ganancias. This project also uses [http://nibiru.googlecode.com Nibiru]  and [http://nibirumobile.googlecode.com Nibiru Mobile].
 
   * [http://www.silex-it.com/ Silex]: Data Transmission System. This project also uses [http://nibiru.googlecode.com Nibiru].
