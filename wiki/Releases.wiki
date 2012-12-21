@@ -4,7 +4,7 @@
 
 This section contains information about changes made between different releases.
 
-= 1.1-SNAPSHOT =
+= 1.1 =
   * Licensing module.
   * Event Bus fixes
 
