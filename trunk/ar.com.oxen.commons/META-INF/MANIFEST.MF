@@ -6,6 +6,7 @@ Bundle-Version: 1.1.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: ar.com.oxen.commons.bean.api,
  ar.com.oxen.commons.bean.impl.simple,
+ ar.com.oxen.commons.coder,
  ar.com.oxen.commons.converter.api,
  ar.com.oxen.commons.converter.impl,
  ar.com.oxen.commons.dao.api,
