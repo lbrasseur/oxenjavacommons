@@ -5,7 +5,7 @@
 	<groupId>ar.com.oxen</groupId>
 	<artifactId>ar.com.oxen</artifactId>
 	<packaging>pom</packaging>
-	<version>1.1</version>
+	<version>1.1.1-SNAPSHOT</version>
 	<name>ar.com.oxen</name>
 	<url>http://maven.apache.org</url>
 	<modules>
