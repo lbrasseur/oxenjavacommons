@@ -14,14 +14,17 @@ import java.util.Date;
 public class DefaultLicenseInfo implements Serializable {
 	private static final long serialVersionUID = -5962868381565454809L;
 	private String customerName;
+	private String module;
 	private Date expirationDate;
 	private String code;
 	private byte[] hardwareId;
 
-	public DefaultLicenseInfo(String customerName, Date expirationDate,
-			String code, byte[] hardwareId) {
+
+	public DefaultLicenseInfo(String customerName, String module,
+			Date expirationDate, String code, byte[] hardwareId) {
 		super();
 		this.customerName = customerName;
+		this.module = module;
 		this.expirationDate = expirationDate;
 		this.code = code;
 		this.hardwareId = hardwareId;
@@ -29,6 +32,10 @@ public class DefaultLicenseInfo implements Serializable {
 
 	public String getCustomerName() {
 		return customerName;
+	}
+
+	public String getModule() {
+		return module;
 	}
 
 	public Date getExpirationDate() {
