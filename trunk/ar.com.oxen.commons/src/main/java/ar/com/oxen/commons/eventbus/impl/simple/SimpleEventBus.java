@@ -100,6 +100,17 @@ public class SimpleEventBus implements EventBus {
 			}
 		}
 	}
+	
+	@Override
+	public synchronized void unsubscribeAnnotatedObject(Object subscriber) {
+		Iterable<AbstractInfo> infos = new ArrayList<AbstractInfo>(
+				this.referenceToHandler.values());
+		for (AbstractInfo info : infos) {
+			if (subscriber == info.getReference().get()) {
+				this.removeHandler(info.getEventHandler());
+			}
+		}
+	}
 
 	private void startKillerThread() {
 		Thread killerThread = new Thread(new Runnable() {
