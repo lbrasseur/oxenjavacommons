@@ -62,4 +62,13 @@ public interface EventBus {
 	 *            The annotated object
 	 */
 	void subscribeAnnotatedObject(Object subscriber);
+	
+	/**
+	 * Unregisters the subscriber object for receiving events on methods
+	 * annotated with {@link EventHandlerMethod}
+	 * 
+	 * @param subscriber
+	 *            The annotated object
+	 */
+	void unsubscribeAnnotatedObject(Object subscriber);
 }
